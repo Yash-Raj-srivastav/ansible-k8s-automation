@@ -2,17 +2,17 @@
 - name: templating j2 files to yaml
   hosts: localhost
   vars_files:
-    - "vars/batch-properties.yaml"
+    - "../vars/batch-properties.yaml"
   tasks:
 
     - name: check if folders exist
       stat:
-        path: "/templates/{{ namespace }}"
+        path: "../templates/{{ namespace }}"
       register: dir_status
 
     - name: create directory if not existing
       file:
-        path: "templates/{{ namespace }}"
+        path: "../templates/{{ namespace }}"
         state: directory
         mode: "0755"
       when: not dir_status.stat.exists

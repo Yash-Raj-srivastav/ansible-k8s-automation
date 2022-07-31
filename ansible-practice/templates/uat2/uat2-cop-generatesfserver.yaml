@@ -7,8 +7,8 @@ metadata:
   generation: 1
   labels:
     app: nginx-deployment
-  name: sit2-nginx-deployment-generatesfserver
-  namespace: sit2
+  name: uat2-nginx-deployment-generatesfserver
+  namespace: uat2
 spec:
   progressDeadlineSeconds: 600
   replicas: 2

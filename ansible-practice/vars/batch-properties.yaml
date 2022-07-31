@@ -8,7 +8,7 @@ server_names:
 
   - name: common_group
     replicas: 1
-    image: ubuntu
+    image: alpine
     file:
     - "arginsagent"
 

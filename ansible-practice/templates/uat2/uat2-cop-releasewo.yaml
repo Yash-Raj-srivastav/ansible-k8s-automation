@@ -6,16 +6,16 @@ metadata:
   creationTimestamp: "2022-07-31T06:24:12Z"
   generation: 1
   labels:
-    app: nginx-deployment
-  name: sit2-nginx-deployment-generatesfserver
-  namespace: sit2
+    app: redis-deployment
+  name: uat2-redis-deployment-releasewo
+  namespace: uat2
 spec:
   progressDeadlineSeconds: 600
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: nginx-deployment
+      app: redis-deployment
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -25,7 +25,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx-deployment
+        app: redis-deployment
     spec:
       affinity:
         nodeAffinity:
@@ -37,9 +37,9 @@ spec:
                 values:
                 - large
       containers:
-      - image: nginx
+      - image: redis
         imagePullPolicy: IfNotPresent
-        name: nginx-deployment
+        name: redis-deployment
         ports:
         - containerPort: 80
           protocol: TCP
