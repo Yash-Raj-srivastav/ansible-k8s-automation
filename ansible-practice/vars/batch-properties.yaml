@@ -1,0 +1,11 @@
+image_tag: alpine
+
+server_names:
+  - name: common_group
+    file:
+    - "generatesfserver"
+    - "processsfserver"
+
+  - name: common_group
+    file:
+    - "arginsagent"

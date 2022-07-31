@@ -1,0 +1,16 @@
+---
+- name: converting jinja to yaml
+  template:
+    src: "../jinja/{{ item.0.name }}.j2"
+    dest: "templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml"
+  register: file_status
+  ignore_errors: true
+
+- name: checking file status
+  debug:
+    msg: "{{ item.1 }} did not get converted properly"
+  when: file_status.failed == true
+
+- name: Run k8s deployment
+  shell: kubectl create -f templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml
+  when: file_status.failed == false
