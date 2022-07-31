@@ -12,7 +12,7 @@ This repository is for running multiple deployments using a single properties fi
    - command: "kind create cluster --name <name-of-your-cluster> --config <path-to-cluster-config-file>" <br />
      example: "kind create cluster --name my-cluster --config ../kind-cluster.yaml"
 5. add taints and labels to your control plane and worker nodes similar to the file which have been provided in kind-cluster/node-config folder(Tolerations are already added in the pod config and properites file)
-   - command: "kubectl get nodes"
+   - command: "kubectl get nodes" <br />
    taint: <br />
    - command: "kubeclt taint nodes <node-name> <key>=<value>:<taintEffect>" <br />
      example: "kubectl taint nodes my-cluster-control-plane spray=red:Noschedule" <br />
