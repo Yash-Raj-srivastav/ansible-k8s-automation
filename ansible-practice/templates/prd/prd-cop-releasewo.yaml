@@ -7,8 +7,8 @@ metadata:
   generation: 1
   labels:
     app: redis-deployment
-  name: sit2-redis-deployment-releasewo
-  namespace: sit2
+  name: prd-redis-deployment-releasewo
+  namespace: prd
 spec:
   progressDeadlineSeconds: 600
   replicas: 1

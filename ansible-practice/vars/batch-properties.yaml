@@ -1,6 +1,8 @@
 server_names:
   - name: common_group
     replicas: 2
+    label: large
+    taint: blue
     image: nginx
     file:
     - "generatesfserver"
@@ -8,12 +10,16 @@ server_names:
 
   - name: common_group
     replicas: 1
+    label: small
+    taint: green
     image: alpine
     file:
     - "arginsagent"
 
   - name: common_group
     replicas: 1
+    label: medium
+    taint: blue
     image: redis
     file:
     - "releasewo"

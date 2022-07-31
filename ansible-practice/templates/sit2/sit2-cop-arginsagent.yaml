@@ -35,7 +35,7 @@ spec:
               - key: size
                 operator: In
                 values:
-                - large
+                - small
       containers:
       - image: alpine
         imagePullPolicy: IfNotPresent
@@ -55,4 +55,4 @@ spec:
       - effect: NoSchedule
         key: spray
         operator: Equal
-        value: blue
+        value: green

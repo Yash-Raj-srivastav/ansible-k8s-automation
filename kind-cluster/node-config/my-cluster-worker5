@@ -1,0 +1,138 @@
+apiVersion: v1
+kind: Node
+metadata:
+  annotations:
+    kubeadm.alpha.kubernetes.io/cri-socket: unix:///run/containerd/containerd.sock
+    node.alpha.kubernetes.io/ttl: "0"
+    volumes.kubernetes.io/controller-managed-attach-detach: "true"
+  creationTimestamp: "2022-07-31T05:28:05Z"
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+    kubernetes.io/hostname: my-cluster-worker5
+    kubernetes.io/os: linux
+    size: large
+  name: my-cluster-worker5
+  resourceVersion: "30196"
+  selfLink: /api/v1/nodes/my-cluster-worker5
+  uid: 00a7a71f-af6d-4086-90de-b9ac234ee9d8
+spec:
+  podCIDR: 10.244.5.0/24
+  podCIDRs:
+  - 10.244.5.0/24
+  providerID: kind://docker/my-cluster/my-cluster-worker5
+  taints:
+  - effect: NoSchedule
+    key: spray
+    value: blue
+status:
+  addresses:
+  - address: 172.18.0.4
+    type: InternalIP
+  - address: my-cluster-worker5
+    type: Hostname
+  allocatable:
+    cpu: "20"
+    ephemeral-storage: 263174212Ki
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 8061872Ki
+    pods: "110"
+  capacity:
+    cpu: "20"
+    ephemeral-storage: 263174212Ki
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 8061872Ki
+    pods: "110"
+  conditions:
+  - lastHeartbeatTime: "2022-07-31T07:53:06Z"
+    lastTransitionTime: "2022-07-31T05:28:05Z"
+    message: kubelet has sufficient memory available
+    reason: KubeletHasSufficientMemory
+    status: "False"
+    type: MemoryPressure
+  - lastHeartbeatTime: "2022-07-31T07:53:06Z"
+    lastTransitionTime: "2022-07-31T05:28:05Z"
+    message: kubelet has no disk pressure
+    reason: KubeletHasNoDiskPressure
+    status: "False"
+    type: DiskPressure
+  - lastHeartbeatTime: "2022-07-31T07:53:06Z"
+    lastTransitionTime: "2022-07-31T05:28:05Z"
+    message: kubelet has sufficient PID available
+    reason: KubeletHasSufficientPID
+    status: "False"
+    type: PIDPressure
+  - lastHeartbeatTime: "2022-07-31T07:53:06Z"
+    lastTransitionTime: "2022-07-31T05:28:35Z"
+    message: kubelet is posting ready status
+    reason: KubeletReady
+    status: "True"
+    type: Ready
+  daemonEndpoints:
+    kubeletEndpoint:
+      Port: 10250
+  images:
+  - names:
+    - k8s.gcr.io/etcd:3.4.13-0
+    sizeBytes: 254659261
+  - names:
+    - k8s.gcr.io/kube-proxy:v1.19.1
+    sizeBytes: 135907926
+  - names:
+    - docker.io/kindest/kindnetd:v20200725-4d6bea59
+    sizeBytes: 118720874
+  - names:
+    - k8s.gcr.io/kube-apiserver:v1.19.1
+    sizeBytes: 95011120
+  - names:
+    - k8s.gcr.io/kube-controller-manager:v1.19.1
+    sizeBytes: 84149058
+  - names:
+    - k8s.gcr.io/kube-scheduler:v1.19.1
+    sizeBytes: 65056560
+  - names:
+    - docker.io/library/nginx@sha256:bd06dfe1f8f7758debd49d3876023992d41842fd8921565aed315a678a309982
+    - docker.io/library/nginx:latest
+    sizeBytes: 56729488
+  - names:
+    - k8s.gcr.io/build-image/debian-base:v2.1.0
+    sizeBytes: 53876619
+  - names:
+    - k8s.gcr.io/coredns:1.7.0
+    sizeBytes: 45355487
+  - names:
+    - docker.io/library/nginx@sha256:f7988fb6c02e0ce69257d9bd9cf37ae20a60f1df7563c3a2a6abe24160306b8d
+    - docker.io/library/nginx:1.14.2
+    sizeBytes: 44710204
+  - names:
+    - docker.io/library/redis@sha256:ed8cba11c09451dbb3495f15951e4afb4f1ba72a4a13e135c6da06c6346e0333
+    - docker.io/library/redis:latest
+    sizeBytes: 42350094
+  - names:
+    - docker.io/rancher/local-path-provisioner:v0.0.14
+    sizeBytes: 41982521
+  - names:
+    - docker.io/library/ubuntu@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+    - docker.io/library/ubuntu:latest
+    sizeBytes: 30427123
+  - names:
+    - docker.io/library/alpine@sha256:7580ece7963bfa863801466c0a488f11c86f85d9988051a9f9c68cb27f6b7872
+    - docker.io/library/alpine:latest
+    sizeBytes: 2802444
+  - names:
+    - k8s.gcr.io/pause:3.3
+    sizeBytes: 685708
+  nodeInfo:
+    architecture: amd64
+    bootID: 1a65377e-b3c2-4d1c-82ce-08586eb1787c
+    containerRuntimeVersion: containerd://1.4.0
+    kernelVersion: 5.10.16.3-microsoft-standard-WSL2
+    kubeProxyVersion: v1.19.1
+    kubeletVersion: v1.19.1
+    machineID: e25ab95053b14bf0947cb00f66e3fa8a
+    operatingSystem: linux
+    osImage: Ubuntu Groovy Gorilla (development branch)
+    systemUUID: e25ab95053b14bf0947cb00f66e3fa8a

@@ -35,7 +35,7 @@ spec:
               - key: size
                 operator: In
                 values:
-                - large
+                - {{ item.0.label }}
       containers:
       - image: {{ item.0.image }}
         imagePullPolicy: IfNotPresent
@@ -55,4 +55,4 @@ spec:
       - effect: NoSchedule
         key: spray
         operator: Equal
-        value: blue
+        value: {{ item.0.taint }}
