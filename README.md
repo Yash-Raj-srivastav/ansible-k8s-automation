@@ -9,7 +9,7 @@ This repository is for running multiple deployments using a single properties fi
 3. **ansible** should be installed, to check if ansible is installed properly run
    - command: `ansible`
 4. create kind cluster with the config file I provided(It totally depends on you how many nodes you want to keep in the cluster)
-   - command: "kind create cluster --name <name-of-your-cluster> --config <path-to-cluster-config-file>" <br />
+   - command: "kind create cluster --name > name-of-your-cluster --config path-to-cluster-config-file <br />
      example: `kind create cluster --name my-cluster --config ../kind-cluster.yaml`
 5. add taints and labels to your control plane and worker nodes similar to the file which have been provided in kind-cluster/node-config folder(Tolerations are already added in the pod config and properites file)
    - command: `kubectl get nodes` <br />
