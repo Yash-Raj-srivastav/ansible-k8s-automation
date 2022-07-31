@@ -14,10 +14,10 @@ This repository is for running multiple deployments using a single properties fi
 5. add taints and labels to your control plane and worker nodes similar to the file which have been provided in kind-cluster/node-config folder(Tolerations are already added in the pod config and properites file)
    - command: "kubectl get nodes" <br />
    taint: <br />
-   - command: "kubeclt taint nodes <node-name> <key>=<value>:<taintEffect>" <br />
+   - command: "kubeclt taint nodes <<node-name>> <<key>=<value>:<taintEffect>>" <br />
      example: "kubectl taint nodes my-cluster-control-plane spray=red:Noschedule" <br />
    label: <br />
-   - command: "kubectl label nodes <node-name> <key>=<value>" <br />
+   - command: "kubectl label nodes <<node-name>> <<key>>=<value>" <br />
      example: "kubectl label nodes my-cluster-worker size=small"
 6. create some sample namespaces like sit2, uat2 or prd
 7. change directory to the foler where template.yaml is located and run ansible playbook command like this
