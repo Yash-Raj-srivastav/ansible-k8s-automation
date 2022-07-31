@@ -1,11 +1,19 @@
-image_tag: alpine
-
 server_names:
   - name: common_group
+    replicas: 2
+    image: nginx
     file:
     - "generatesfserver"
     - "processsfserver"
 
   - name: common_group
+    replicas: 1
+    image: ubuntu
     file:
     - "arginsagent"
+
+  - name: common_group
+    replicas: 1
+    image: redis
+    file:
+    - "releasewo"

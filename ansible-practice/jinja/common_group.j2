@@ -6,19 +6,16 @@ metadata:
   creationTimestamp: "2022-07-31T06:24:12Z"
   generation: 1
   labels:
-    app: nginx
-  name: {{ namespace }}-nginx-deployment-{{ item.1 }}
-  namespace: default
-  resourceVersion: "11709"
-  selfLink: /apis/apps/v1/namespaces/default/deployments/nginx-deployment
-  uid: 543581d9-a210-448d-bebc-538f0606a026
+    app: {{ item.0.image }}-deployment
+  name: {{ namespace }}-{{ item.0.image }}-deployment-{{ item.1 }}
+  namespace: {{ namespace }}
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: {{ item.0.replicas }}
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: nginx
+      app: {{ item.0.image }}-deployment
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -28,7 +25,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx
+        app: {{ item.0.image }}-deployment
     spec:
       affinity:
         nodeAffinity:
@@ -40,9 +37,9 @@ spec:
                 values:
                 - large
       containers:
-      - image: nginx:1.14.2
+      - image: {{ item.0.image }}
         imagePullPolicy: IfNotPresent
-        name: nginx
+        name: {{ item.0.image }}-deployment
         ports:
         - containerPort: 80
           protocol: TCP
@@ -59,22 +56,3 @@ spec:
         key: spray
         operator: Equal
         value: blue
-status:
-  availableReplicas: 3
-  conditions:
-  - lastTransitionTime: "2022-07-31T06:24:28Z"
-    lastUpdateTime: "2022-07-31T06:24:28Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2022-07-31T06:24:12Z"
-    lastUpdateTime: "2022-07-31T06:24:28Z"
-    message: ReplicaSet "nginx-deployment-5559bccb8d" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 3
-  replicas: 3
-  updatedReplicas: 3
