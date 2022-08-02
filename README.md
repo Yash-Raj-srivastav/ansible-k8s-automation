@@ -1,6 +1,9 @@
 # ansible-k8s-automation
 ## This repository is for running multiple deployments using a generic deployment template written in jinja2 and property files, Running a single playbbok command will take care of
-- 
+- Checks if all the required tools are installed in your system, if not then fails the playbook
+- Checks if the cluster is already running, if not then create a kind cluster with 6 nodes(1 control plane, 5 worker nodes)
+- Apply appropriate labels on the nodes defined in node-properties.yaml file
+- Apply appropriate labels on the nodes defined in node-properties.yaml file
 
 ## To run this in your local system make sure these requirements are checked
 1. **docker** should be installed(if you are using windows system then also install wsl2) to check run command in your linux distro
