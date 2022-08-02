@@ -1,7 +1,8 @@
 # ansible-k8s-automation
-This repository is for running multiple deployments using a single properties file and a generic deployment template which can be changed into k8s Jobs or Cron Jobs.
+## This repository is for running multiple deployments using a generic deployment template written in jinja2 and property files, Running a single playbbok command will take care of
+- 
 
-# To run this in your local system make sure these requirements are checked
+## To run this in your local system make sure these requirements are checked
 1. **docker** should be installed(if you are using windows system then also install wsl2) to check run command in your linux distro
    - command: `docker`
 2. **k8s kind** should be installed to create a multinode cluster, to check if it is installed successfully run
