@@ -7,6 +7,7 @@
 - Checks if the required namespaces already exist, if not then create the namespaces
 - Runs another playbook template.yaml to convert jinja2 template into deployment manifest files inside template folder
 - Runs another playbook to pick up the manifest files and create the deployments out of them in the given namespace.
+- command: `ansible-playbook -e namespace=uat2 ansible-practice/playbooks/deploy-kind-cluster.yaml`
 
 ## To run this in your local system make sure these requirements are checked
 1. **docker** should be installed(if you are using windows system then also install wsl2) to check run command in your linux distro
@@ -28,4 +29,3 @@
      example: `kubectl label nodes my-cluster-worker size=small`
 6. create some sample namespaces like sit2, uat2 or prd
 7. change directory to the foler where template.yaml is located and run ansible playbook command like this
-   - command: `ansible-playbook -e namespace=uat2 ansible-practice/playbooks/deploy-kind-cluster.yaml`
