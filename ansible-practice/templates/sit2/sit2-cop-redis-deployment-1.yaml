@@ -46,14 +46,11 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        securityContext:
-          runAsUser: 1000
-          capabilities:
-              add: ["MAC_ADMIN"]
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
+      securityContext: {}
       tolerations:
       - effect: NoSchedule
         key: spray
