@@ -1,24 +1,16 @@
 ---
-- name: templating j2 files to yaml
-  hosts: localhost
-  vars_files:
-    - "../vars/batch-properties.yaml"
-  tasks:
+- name: check if folders exist
+  stat:
+    path: "../templates/{{ namespace }}"
+  register: dir_status
 
-    - name: check if folders exist
-      stat:
-        path: "../templates/{{ namespace }}"
-      register: dir_status
+- name: create directory if not existing
+  file:
+    path: "../templates/{{ namespace }}"
+    state: directory
+    mode: "0755"
+  when: not dir_status.stat.exists
 
-    - name: create directory if not existing
-      file:
-        path: "../templates/{{ namespace }}"
-        state: directory
-        mode: "0755"
-      when: not dir_status.stat.exists
-
-    - name: Running sub tasks
-      include_tasks: convert.yaml
-      loop: "{{ server_names | subelements('file', 'skip_missing=true') }}"
-
-
+- name: Running sub tasks
+  include_tasks: convert.yaml
+  loop: "{{ server_names | subelements('file', 'skip_missing=true') }}"

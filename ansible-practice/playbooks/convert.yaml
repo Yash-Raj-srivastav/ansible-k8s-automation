@@ -14,3 +14,7 @@
 - name: Run k8s deployment
   shell: kubectl create -f ../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml
   when: file_status.failed == false
+
+# - name: Expose prometheus k8s deployment
+#   shell: kubectl expose deployment {{ namespace }}-{{ item.0.image }}-deployment-{{ item.1 }} --name={{ namespace }}-{{ item.0.image }}-service-{{ item.1 }}
+#   when: "{{ item.0.image }} == bitnami/prometheus:latest"

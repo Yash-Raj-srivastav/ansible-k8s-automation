@@ -1,0 +1,31 @@
+node_config:
+  - taint: spray
+    taintValue: red
+    label: size
+    labelValue: extraLarge
+    nodes:
+      - my-cluster-control-plane
+
+  - taint: spray
+    taintValue: green
+    label: size
+    labelValue: small
+    nodes:
+      - my-cluster-worker
+      - my-cluster-worker2
+
+  - taint: spray
+    taintValue: blue
+    label: size
+    labelValue: medium
+    nodes:
+      - my-cluster-worker3
+      - my-cluster-worker4
+      - my-cluster-worker5
+  
+  - taint: spray
+    taintValue: blue
+    label: size
+    labelValue: large
+    nodes:
+      - my-cluster-worker5

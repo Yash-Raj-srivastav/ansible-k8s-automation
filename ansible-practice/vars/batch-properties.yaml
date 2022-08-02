@@ -5,8 +5,8 @@ server_names:
     taint: blue
     image: nginx
     file:
-    - "generatesfserver"
-    - "processsfserver"
+    - "nginx-deployment-1"
+    - "nginx-deployment-2"
 
   - name: common_group
     replicas: 1
@@ -14,7 +14,7 @@ server_names:
     taint: green
     image: alpine
     file:
-    - "arginsagent"
+    - "alpine-deployment-1"
 
   - name: common_group
     replicas: 1
@@ -22,4 +22,4 @@ server_names:
     taint: blue
     image: redis
     file:
-    - "releasewo"
+    - "redis-deployment-1"
