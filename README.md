@@ -21,4 +21,4 @@ This repository is for running multiple deployments using a single properties fi
      example: `kubectl label nodes my-cluster-worker size=small`
 6. create some sample namespaces like sit2, uat2 or prd
 7. change directory to the foler where template.yaml is located and run ansible playbook command like this
-   - command: `ansible-playbook -e namespace=<any-of-above-mentioned-namespace-or-your-own> template.yaml`
+   - command: `ansible-playbook -e namespace=uat2 ansible-practice/playbooks/deploy-kind-cluster.yaml`
