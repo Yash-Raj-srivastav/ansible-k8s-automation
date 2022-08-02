@@ -6,7 +6,7 @@
 - Apply appropriate taint on the nodes defined in node-properties.yaml file
 - Checks if the required namespaces already exist, if not then create the namespaces
 - Runs another playbook template.yaml to convert jinja2 template into deployment manifest files inside template folder
-- Run another playbook to pick up the manifest files and create the deployments out of them.
+- Runs another playbook to pick up the manifest files and create the deployments out of them in the given namespace.
 
 ## To run this in your local system make sure these requirements are checked
 1. **docker** should be installed(if you are using windows system then also install wsl2) to check run command in your linux distro
