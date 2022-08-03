@@ -38,7 +38,7 @@ This project exists thanks to all the people who contribute — [contribute](CON
   <img src="https://contrib.rocks/image?repo=Yash-Raj-srivastav/devops-roadmap" />
 </a>
 </div> -->
-## Thanks to all the contributors ❤️
+## Thanks to all the contributors
 <a href = "https://github.com/Yash-Raj-srivastav/devops-roadmap/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=Yash-Raj-srivastav/devops-roadmap"/>
 </a>
