@@ -29,8 +29,8 @@ label: <br />
    - command: "kubectl label nodes _node-name key=value_" <br />
      example: `kubectl label nodes my-cluster-worker size=small`
 6. create some sample namespaces like sit2, uat2 or prd in your kind cluster
-<<<<<<< HEAD
 7. change directory to "ansible-k8s-automation" and run ansible playbook command like this <br />
+
 job: <br />
    - command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job` <br />
 deployment: <br />
