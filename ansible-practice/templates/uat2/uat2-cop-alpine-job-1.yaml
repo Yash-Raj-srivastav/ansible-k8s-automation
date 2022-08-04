@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: alpine-job
+  name: uat2-alpine-job-1
+  namespace: uat2
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 60
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: alpine-job
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - small
+      containers:
+      - image: alpine
+        imagePullPolicy: IfNotPresent
+        name: alpine-job
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      tolerations:
+      - effect: NoSchedule
+        key: spray
+        operator: Equal
+        value: green

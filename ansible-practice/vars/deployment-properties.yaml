@@ -1,5 +1,5 @@
-server_names:
-  - name: common_group
+deployment_server_names:
+  - name: common_deployment_template
     replicas: 2
     label: large
     taint: blue
@@ -8,7 +8,7 @@ server_names:
     - "nginx-deployment-1"
     - "nginx-deployment-2"
 
-  - name: common_group
+  - name: common_deployment_template
     replicas: 1
     label: small
     taint: green
@@ -16,7 +16,7 @@ server_names:
     file:
     - "alpine-deployment-1"
 
-  - name: common_group
+  - name: common_deployment_template
     replicas: 1
     label: medium
     taint: blue

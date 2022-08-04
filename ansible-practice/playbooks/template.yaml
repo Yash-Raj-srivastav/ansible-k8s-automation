@@ -3,6 +3,7 @@
   stat:
     path: "../templates/{{ namespace }}"
   register: dir_status
+  tags: always
 
 - name: create directory if not existing
   file:
@@ -10,7 +11,16 @@
     state: directory
     mode: "0755"
   when: not dir_status.stat.exists
+  tags: always
 
-- name: Running sub tasks
+- name: Running sub tasks for deployment
   include_tasks: convert.yaml
-  loop: "{{ server_names | subelements('file', 'skip_missing=true') }}"
+  loop: "{{ deployment_server_names | subelements('file', 'skip_missing=true') }}"
+  tags:
+    - create-deployment
+
+- name: Running sub tasks for job
+  include_tasks: convert.yaml
+  loop: "{{ job_server_names | subelements('file', 'skip_missing=true') }}"
+  tags:
+    - create-job

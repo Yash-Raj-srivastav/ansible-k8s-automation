@@ -1,5 +1,5 @@
 # ansible-k8s-automation
-## This repository is for running multiple deployments using a generic deployment template written in jinja2 and property files, Running a single playbbok command will take care of
+## This repository is for running multiple deployments/jobs using a generic deployment template written in jinja2 and property files, Running a single playbbok command will take care of
 - Checks if all the required tools are installed in your system, if not then fails the playbook
 - Checks if the cluster is already running, if not then create a kind cluster with 6 nodes(1 control plane, 5 worker nodes)
 - Apply appropriate labels on the nodes defined in node-properties.yaml file
@@ -7,7 +7,8 @@
 - Checks if the required namespaces already exist, if not then create the namespaces
 - Runs another playbook template.yaml to convert jinja2 template into deployment manifest files inside template folder
 - Runs another playbook to pick up the manifest files and create the deployments out of them in the given namespace.
-- command: `ansible-playbook -e namespace=uat2 ansible-practice/playbooks/deploy-kind-cluster.yaml`
+- command: `ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"`
+- command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job"`
 
 ## To run this manually in your local system make sure these requirements are checked
 1. **docker** should be installed(if you are using windows system then also install wsl2) to check run this command in your linux distro
@@ -28,5 +29,8 @@
    - command: "kubectl label nodes _node-name key=value_" <br />
      example: `kubectl label nodes my-cluster-worker size=small`
 6. create some sample namespaces like sit2, uat2 or prd in your kind cluster
-7. change directory to "ansible-k8s-automation" and run ansible playbook command like this
-   - command: `ansible-playbook -e namespace=uat2 ansible-practice/playbooks/deploy-kind-cluster.yaml`
+7. change directory to "ansible-k8s-automation" and run ansible playbook command like this <br />
+   job: <br />
+   - command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job` <br />
+   deployment: <br />
+   - command: `ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"`

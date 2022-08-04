@@ -1,40 +1,47 @@
 ---
-- name: templating j2 files to yaml
+- name: templating j2 files into yaml
   hosts: localhost
   vars_files:
-    - "../vars/batch-properties.yaml"
     - "../vars/node-properties.yaml"
+    - "../vars/batch-job-properties.yaml"
+    - "../vars/deployment-properties.yaml"
   tasks:
     - name: check if docker is installed
       shell: docker
       register: docker_status
+      tags: always
 
     - name: check if kind is installed
       shell: kind
       register: kind_status
       when: docker_status.rc == 0
+      tags: always
 
     - name: check if the cluster is already up
       shell: "kubectl get nodes"
       register: cluster_exist_status
       ignore_errors: true
       when: kind_status.rc == 0
+      tags: always
 
     - name: create kind cluster with config file
       shell: "
               cd;
               kind create cluster --name my-cluster --config ansible-k8s-automation/kind-cluster/kind-cluster.yaml;
-             "
+              "
       register: cluster_status
       when: cluster_exist_status.rc != 0
+      tags: always
 
     - name: check if the cluster is running
       shell: "kubectl get nodes"
       register: cluster_check
+      tags: always
 
     - name: label and taint nodes
       include_tasks: label-and-taint-nodes.yaml
       loop: "{{ node_config | subelements('nodes', 'skip_missing=true') }}"
+      tags: always
 
     - name: check if the namespaces are already created
       shell: "kubectl get ns {{ item }}"
@@ -45,6 +52,7 @@
         - uat2
         - prd
       when: cluster_check.rc == 0
+      tags: always
 
     - name: create namespaces in my-cluster cluster
       shell: "kubectl create ns {{ item }}"
@@ -55,6 +63,8 @@
       when:
         - cluster_check.rc == 0
         - ns_status.results[0].rc != 0 and ns_status.results[1].rc != 0 and ns_status.results[2].rc != 0
+      tags: always
 
-    - name: run ansible playbook to create deployments
+    - name: run ansible playbook to create deployment/job
       include_tasks: template.yaml
+      tags: always

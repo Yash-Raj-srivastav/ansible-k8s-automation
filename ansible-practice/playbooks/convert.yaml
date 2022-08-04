@@ -1,20 +1,19 @@
 ---
-- name: converting jinja to yaml
+- name: converting jinja to deployment/job yaml
   template:
-    src: "../jinja/{{ item.0.name }}.j2"
+    src: "../jinja/common_{{ type }}_template.j2"
     dest: "../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml"
   register: file_status
   ignore_errors: true
+  tags: always
 
 - name: checking file status
   debug:
     msg: "{{ item.1 }} did not get converted properly"
   when: file_status.failed == true
+  tags: always
 
 - name: Run k8s deployment
   shell: kubectl create -f ../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml
   when: file_status.failed == false
-
-# - name: Expose prometheus k8s deployment
-#   shell: kubectl expose deployment {{ namespace }}-{{ item.0.image }}-deployment-{{ item.1 }} --name={{ namespace }}-{{ item.0.image }}-service-{{ item.1 }}
-#   when: "{{ item.0.image }} == bitnami/prometheus:latest"
+  tags: always

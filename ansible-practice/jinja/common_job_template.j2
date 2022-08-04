@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: {{ item.0.image }}-job
+  name: {{ namespace }}-{{ item.1 }}
+  namespace: {{ namespace }}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 60
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ item.0.image }}-job
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - {{ item.0.label }}
+      containers:
+      - image: {{ item.0.image }}
+        imagePullPolicy: IfNotPresent
+        name: {{ item.0.image }}-job
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      tolerations:
+      - effect: NoSchedule
+        key: spray
+        operator: Equal
+        value: {{ item.0.taint }}
