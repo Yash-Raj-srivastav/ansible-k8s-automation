@@ -22,18 +22,18 @@
      example: `kind create cluster --name my-cluster --config kind-cluster/kind-cluster.yaml`
 5. add taints and labels to your control plane and worker nodes similar to the file which have been provided in kind-cluster/node-config folder(Tolerations are already added in the pod config and properites file) or you can look at node-properties.yaml file inside vars folder
    - command: `kubectl get nodes` <br />
-   taint: <br />
+   **taint**: <br />
    - command: "kubeclt taint nodes _node-name key=value:taintEffect_" <br />
      example: `kubectl taint nodes my-cluster-control-plane spray=red:NoSchedule` <br />
-   label: <br />
+   **label**: <br />
    - command: "kubectl label nodes _node-name key=value_" <br />
      example: `kubectl label nodes my-cluster-worker size=small`
 6. create some sample namespaces like sit2, uat2 or prd in your kind cluster
 7. change directory to "ansible-k8s-automation" and run ansible playbook command like this <br />
    - command: `cd ansible-k8s-automation` <br />
-   job: <br />
+   **job**: <br />
    - command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job` <br />
-   deployment: <br />
+   **deployment**: <br />
    - command: `ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"`
 
 <!-- ## 💪 Thanks to all Contributors
