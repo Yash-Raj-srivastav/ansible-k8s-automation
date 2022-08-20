@@ -32,7 +32,7 @@
 7. change directory to "ansible-k8s-automation" and run ansible playbook command like this <br />
    - command: `cd ansible-k8s-automation`
    ### job: 
-   - command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job` <br />
+   - command: `ansible-playbook -e "namespace=uat2 type=job" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-job"` <br />
    ### deployment:
    - command: `ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"`
 
