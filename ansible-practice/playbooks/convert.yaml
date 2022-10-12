@@ -14,7 +14,7 @@
   tags: always
 
 - name: Run k8s deployment
-  shell: yamllint -c validate_yaml_config/validate.yaml "../templates/"
+  shell: yamllint -c ../validate_yaml_config/validate.yaml "../templates/"
   when: file_status.failed == false
   tags: always
 
