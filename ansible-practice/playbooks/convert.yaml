@@ -14,6 +14,11 @@
   tags: always
 
 - name: Run k8s deployment
+  shell: yamllint -c validate_yaml_config/validate.yaml "../templates/"
+  when: file_status.failed == false
+  tags: always
+
+- name: Run k8s deployment
   shell: kubectl create -f ../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml
   when: file_status.failed == false
   tags: always
