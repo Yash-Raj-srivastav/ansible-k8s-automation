@@ -13,14 +13,13 @@
   when: file_status.failed == true
   tags: always
 
-- name: Run k8s deployment
-  shell: |
-    pwd
-    # yamllint -c ../validate_yaml_config/validate.yaml "../templates/"
+- name: validate k8s manifest file
+  shell: yamllint -c ~/ansible-k8s-automation/validate_yaml_config/validate.yaml "../templates/"
   when: file_status.failed == false
+  register: valid_yaml
   tags: always
 
 - name: Run k8s deployment
   shell: kubectl create -f ../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml
-  when: file_status.failed == false
+  when: valid_yaml.rc == 0
   tags: always
