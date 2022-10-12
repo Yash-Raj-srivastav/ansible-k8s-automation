@@ -11,7 +11,7 @@ on:
 jobs:
   validate_yaml:
     name: Validate yaml templates
-    runs-on: [self-hosted, label-1]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: validating yaml files in public/data
