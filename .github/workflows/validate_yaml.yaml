@@ -24,7 +24,7 @@ jobs:
   provision_cluster:
     name: Provision K8s cluster via Ansible
     runs-on: [self-hosted, label-1]
-    needs: validate_yaml
+    needs: quality_checks
     steps:
     - uses: actions/checkout@v2
     - name: Run ansible playbook to provision cluster
