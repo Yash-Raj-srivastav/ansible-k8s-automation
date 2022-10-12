@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: validating yaml files in public/data
-      run: yamllint -c validate_yaml_config/validate.yaml "ansible-practice/templates/uat2/"
+      run: yamllint -c validate_yaml_config/validate.yaml "ansible-practice/templates/"
   quality_checks:
     name: Perform quality check
     runs-on: [self-hosted, label-1]
