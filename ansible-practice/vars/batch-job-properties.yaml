@@ -4,19 +4,19 @@ job_server_names:
     taint: blue
     image: ubuntu
     file:
-    - "ubuntu-job-1"
-    - "ubuntu-job-2"
+    - "ubuntu-job"
+    - "ubuntu-job"
 
   - name: common_job_template
     label: small
     taint: green
-    image: alpine
+    image: ubuntu
     file:
-    - "alpine-job-1"
+    - "ubuntu-job"
 
   - name: common_job_template
     label: medium
     taint: blue
-    image: centos
+    image: ubuntu
     file:
-    - "centos-job-1"
+    - "ubuntu-job"

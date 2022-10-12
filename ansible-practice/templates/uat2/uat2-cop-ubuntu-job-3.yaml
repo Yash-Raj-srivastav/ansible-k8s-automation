@@ -3,7 +3,7 @@ kind: Job
 metadata:
   labels:
     app: ubuntu-job
-  name: uat2-nginx-job-2
+  generateName: uat2-ubuntu-job-3-
   namespace: uat2
 spec:
   backoffLimit: 0
@@ -19,10 +19,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: size
+              - key: "size"
                 operator: In
                 values:
-                - large
+                - small
       containers:
       - image: ubuntu
         imagePullPolicy: IfNotPresent
@@ -33,6 +33,7 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        command: ["sleep", "10"]
       dnsPolicy: ClusterFirst
       restartPolicy: Never
       schedulerName: default-scheduler
@@ -40,6 +41,6 @@ spec:
       securityContext: {}
       tolerations:
       - effect: NoSchedule
-        key: spray
-        operator: Equal
-        value: blue
+        key: "spray"
+        operator: "Equal"
+        value: green

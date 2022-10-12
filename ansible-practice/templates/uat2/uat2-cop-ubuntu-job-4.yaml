@@ -2,8 +2,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   labels:
-    app: alpine-job
-  generateName: uat2-alpine-job-1-
+    app: ubuntu-job
+  generateName: uat2-ubuntu-job-4-
   namespace: uat2
 spec:
   backoffLimit: 0
@@ -12,7 +12,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: alpine-job
+        app: ubuntu-job
     spec:
       affinity:
         nodeAffinity:
@@ -22,11 +22,11 @@ spec:
               - key: "size"
                 operator: In
                 values:
-                - small
+                - medium
       containers:
-      - image: alpine
+      - image: ubuntu
         imagePullPolicy: IfNotPresent
-        name: alpine-job
+        name: ubuntu-job
         ports:
         - containerPort: 80
           protocol: TCP
@@ -43,4 +43,4 @@ spec:
       - effect: NoSchedule
         key: "spray"
         operator: "Equal"
-        value: green
+        value: blue

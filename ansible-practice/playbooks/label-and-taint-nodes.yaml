@@ -1,6 +1,8 @@
 ---
 - name: Label cluster nodes
   shell: "kubectl label nodes {{ item.1 }} {{ item.0.label }}={{ item.0.labelValue }} --overwrite=true"
+  tags: always
 
 - name: Taint cluster nodes
   shell: "kubectl taint nodes {{ item.1 }} {{ item.0.taint }}={{ item.0.taintValue }}:NoSchedule --overwrite=true"
+  tags: always

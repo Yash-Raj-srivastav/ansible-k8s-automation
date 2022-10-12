@@ -1,0 +1,12 @@
+---
+- name: templating j2 files into yaml
+  hosts: localhost
+  tasks:
+  - name: check if robusta is installated
+    shell: robusta version
+    register: robusta_status
+
+  - name: verify that robusta is running two pods and there are no errors in the logs
+    shell: "kubectl get pods;
+            robusta logs"
+    tags: always

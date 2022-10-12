@@ -1,0 +1,33 @@
+name: Perform Quality check on the repo
+
+on:
+  push:
+    branches: [ main, Quality_check_action ]
+    path: [ '**.yaml', '**.yml' ]
+  pull_request:
+    type: [ opened, edited, reopened, synchronize ]
+    branches: [ main ]
+
+jobs:
+  validate_yaml:
+    name: Validate yaml templates
+    runs-on: [self-hosted, label-1]
+    steps:
+    - uses: actions/checkout@v2
+    - name: validating yaml files in public/data
+      run: |
+        chmod 755 -R public/data/
+        yamllint -c validate_yaml_config/validate.yaml "ansible-practice/templates/uat2/"
+  quality_checks:
+    name: Perform quality check
+    runs-on: [self-hosted, label-1]
+    needs: validate_yaml
+    steps:
+    - uses: actions/checkout@v2
+    - name: check python version
+      run: python -V
+    - name: install pre-commit plugin
+      run: pip install pre-commit
+    - run: pre-commit install
+    - name: run pre-commit checks on files
+      run: pre-commit run --all-files --show-diff-on-failure

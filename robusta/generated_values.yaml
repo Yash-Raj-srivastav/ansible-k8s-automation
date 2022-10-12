@@ -1,0 +1,143 @@
+globalConfig:
+  signing_key: d703e64b-f1e4-489f-91df-ae71f1483c08
+  account_id: d441a084-07e2-4e14-ae62-d016732c5650
+sinksConfig:
+- slack_sink:
+    name: main_slack_sink
+    slack_channel: ansible-k8s-automation
+    api_key: xoxb-3891143326823-3891147282935-8LfuDBkCPNtR4TVbzcnSSdFg
+- robusta_sink:
+    name: robusta_ui_sink
+    token: eyJhY2NvdW50X2lkIjogImQ0NDFhMDg0LTA3ZTItNGUxNC1hZTYyLWQwMTY3MzJjNTY1MCIsICJhcGlfa2V5IjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp5YjJ4bElqb2lZVzV2YmlJc0ltbGhkQ0k2TVRZeU5ERTNNalF5TkN3aVpYaHdJam94T1RNNU56UTROREkwZlEuaFJMdjZQQW54MWNhdkR3bC1pWXlnQXJINHFBMERWSFluckQ3MUFzcXFQdyIsICJzdG9yZV91cmwiOiAiaHR0cHM6Ly94dnlocG94Zm10cHVxcWV5cWtzby5zdXBhYmFzZS5jbyIsICJlbWFpbCI6ICJhcGl1c2VyLXlhc2gtcmFqLXNyaXZhc3RhdkByb2J1c3RhLmRldiIsICJwYXNzd29yZCI6ICI1MTI0OTc3YS03OGM4LTRhNWMtOTJmNi1iOWRjMDA3MzFhNzEifQ==
+clusterName: my-cluster
+enablePrometheusStack: true
+enablePlatformPlaybooks: true
+playbooksPersistentVolumeSize: 128Mi
+kubewatch:
+  resources:
+    requests:
+      memory: 64Mi
+  tolerations:
+  - effect: NoSchedule
+    key: spray
+    operator: Equal
+    value: red
+grafanaRenderer:
+  resources:
+    requests:
+      memory: 64Mi
+  tolerations:
+  - effect: NoSchedule
+    key: spray
+    operator: Equal
+    value: red
+runner:
+  sendAdditionalTelemetry: true
+  tolerations:
+  - effect: NoSchedule
+    key: spray
+    operator: Equal
+    value: red
+kube-prometheus-stack:
+  alertmanager:
+    alertmanagerSpec:
+      tolerations:
+      - effect: NoSchedule
+        key: spray
+        operator: Equal
+        value: red
+  admissionWebhooks:
+    patch:
+      tolerations:
+      - effect: NoSchedule
+        key: spray
+        operator: Equal
+        value: red
+  prometheusOperator:
+    tolerations:
+    - effect: NoSchedule
+      key: spray
+      operator: Equal
+      value: red
+  prometheus:
+    prometheusSpec: 
+      tolerations:
+      - effect: NoSchedule
+        key: spray
+        operator: Equal
+        value: red
+rsa:
+  prv: '-----BEGIN RSA PRIVATE KEY-----
+
+    MIIEowIBAAKCAQEA4YbCZqVDHQaI2RdZtBAausZ+Ch/B4Btoj4VPwEiK4aplrd5I
+
+    /zuOCXa5qCZ71Hnn7FZlgAgAUMMdOUr3m8mK5iycjPXfgn7JzXCjERyYZTmmPk3J
+
+    uLcuCAhSRnpA4c+GDmyHwrfCl4pPqY50I3YjyIIKPRl2mheb0BZjhGAFdDYnZt1a
+
+    hqfT36ygSl/E6tGIBTNqxQbYckwvmCseW5PnZUS5qihpEhQYcwDEuum037ZQxN8l
+
+    fayc5RMs0KY2MsRuxmcrFS3DEQqAPtjRtebUtQXzcfmVxuEc/kBecgOsLZWnIcwc
+
+    a6ym0HaUtivyjtK7Hc6h4NP10tMVo6+e/sRT5wIDAQABAoIBAQDHYU7uVj5+I6/K
+
+    VTVt1ir7Ys48/xR0n2aSM6Zs9PUrSmy4CON6GdmZjkfWW6dwEhIyw7LaPLiircxh
+
+    QWCkbsqIcXo5uIlQIe0g3eqcDy6/lvbc8AJddjyQx2KNgjloKQJ4MATZ5YF4XcPN
+
+    v+33B9PcyPJqT9+lnSeYEKMMfaN0t17D1YAXtKdd3gn8NMd4qahKgk6qZSZrnPa8
+
+    GoEiVp+Oi0rhsAy7OxapkuHJdzxzYX+IKG333ZMpW55h3CK/2K0fnffRstYdo7vI
+
+    DBsMXbf8Fqh1BK8lrEpEC5WCMzCsFJvKnzrZfqD/l6lcuu5Joeq5v0DX7MkAzetS
+
+    S7OraHHRAoGBAPGluc5+5mR7OlnU8T+w/j879BbDjPwpnUzv36piuJg5ZH1S9vue
+
+    aZ8xZ80TnrFchXIeV9B9uxnCJ+DxT3bplLxDd3BBQUcSDqdwYL9Tl/VktQODu/Bx
+
+    bKgxiBRbT+RWLtjQqcG2hnUoN31w90stqjiqCdcS0TXnX9qBUedLnuSvAoGBAO7r
+
+    6aBAqWzNBS4gEqq5JYL+cVgYGWgg6376Iu4yGB7nUxGvYGlQnqDXsIU/7Gtx2CXY
+
+    qjOpTeJQdyMBEAFa2pE+Za67SuBWMhO0ji1FxlvQHwGmZphfeVfjawavs2/CNICn
+
+    KmFrohEyyKH6CJEJkzRZVDCoZxIYfxgNBmDggEJJAoGAYbfIyY5bkKqcUBNic4UZ
+
+    a2zNKh9t9dLGP4SJCBff2f7rehqAsgO/ZpbOCQo0FDj75cgLbs5JSQNQqRAsOEQA
+
+    15jYxdY9lYXh0ygIl5YwTxWodYFiELttWx6cjs7WIdoQG7FV1HYBLYNT3TA/cHFI
+
+    8p0gWY7Md2XXRz8gZc4YtRUCgYBfmTfG7nicV0CeXyj49NJEoujZVfM8jgeMrCuz
+
+    4YlzPB4p8mGCYkbGludDufswVsIlCpe3yiOmzYmOEQvFbwQLn8rx6nEgaHzrE5Dc
+
+    HpIrBJCTiXB9wZ39A7s8VqtWqX92huzXREj51rce0LwCxLEI/kFIouly/ShFiFio
+
+    BMxtOQKBgGqRgNq2jj5KQgOHypYS+v+WCabaMO2ghDEVkw1BMKbKn6/205imU3bO
+
+    aD04JuW4VDeF40pBGtfEIG34M3EuRYaTHTqOcT7V9ppEhrC4hCne5ugutvzWrjO0
+
+    PREXVJoYPIShhzBN+knwJvkwG5QpNAarQaSK6cTMXyvcebOGkN8d
+
+    -----END RSA PRIVATE KEY-----
+
+    '
+  pub: '-----BEGIN PUBLIC KEY-----
+
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4YbCZqVDHQaI2RdZtBAa
+
+    usZ+Ch/B4Btoj4VPwEiK4aplrd5I/zuOCXa5qCZ71Hnn7FZlgAgAUMMdOUr3m8mK
+
+    5iycjPXfgn7JzXCjERyYZTmmPk3JuLcuCAhSRnpA4c+GDmyHwrfCl4pPqY50I3Yj
+
+    yIIKPRl2mheb0BZjhGAFdDYnZt1ahqfT36ygSl/E6tGIBTNqxQbYckwvmCseW5Pn
+
+    ZUS5qihpEhQYcwDEuum037ZQxN8lfayc5RMs0KY2MsRuxmcrFS3DEQqAPtjRtebU
+
+    tQXzcfmVxuEc/kBecgOsLZWnIcwca6ym0HaUtivyjtK7Hc6h4NP10tMVo6+e/sRT
+
+    5wIDAQAB
+
+    -----END PUBLIC KEY-----
+
+    '

@@ -3,7 +3,7 @@ kind: Job
 metadata:
   labels:
     app: {{ item.0.image }}-job
-  name: {{ namespace }}-{{ item.1 }}
+  generateName: {{ namespace }}-{{ item.1 }}-
   namespace: {{ namespace }}
 spec:
   backoffLimit: 0
@@ -19,7 +19,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: size
+              - key: "size"
                 operator: In
                 values:
                 - {{ item.0.label }}
@@ -40,6 +40,6 @@ spec:
       securityContext: {}
       tolerations:
       - effect: NoSchedule
-        key: spray
-        operator: Equal
+        key: "spray"
+        operator: "Equal"
         value: {{ item.0.taint }}
