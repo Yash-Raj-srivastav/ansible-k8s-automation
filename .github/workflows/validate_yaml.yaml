@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: check python version
-      run: python -V
+      run: pip -V
     - name: install pre-commit plugin
       run: pip install pre-commit
     - run: pre-commit install
