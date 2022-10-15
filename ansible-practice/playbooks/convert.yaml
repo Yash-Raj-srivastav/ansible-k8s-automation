@@ -14,7 +14,7 @@
   tags: always
 
 - name: validate k8s manifest file
-  shell: yamllint -c ~/ansible-k8s-automation/validate_yaml_config/validate.yaml "../templates/"
+  shell: yamllint -c ~/ansible-k8s-automation/validate_yaml_config/validate.yaml "../templates/{{ namespace }}/{{ namespace }}-cop-{{ item.1 }}.yaml"
   when: file_status.failed == false
   register: valid_yaml
   tags: always

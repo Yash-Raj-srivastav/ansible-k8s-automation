@@ -2,7 +2,7 @@ name: Perform Quality check on the repo
 
 on:
   push:
-    branches: [ main, Quality_check_action ]
+    branches: [ main, develop ]
     path: [ '**.yaml', '**.yml' ]
   pull_request:
     type: [ opened, edited, reopened, synchronize ]
@@ -21,6 +21,7 @@ jobs:
     - run: pre-commit install
     - name: run pre-commit checks on files
       run: pre-commit run --all-files --show-diff-on-failure
+      
   provision_cluster:
     name: Provision K8s cluster via Ansible
     runs-on: [self-hosted, label-1]

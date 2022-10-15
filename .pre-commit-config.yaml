@@ -8,5 +8,6 @@ repos:
     -   id: check-added-large-files
         args: ['--maxkb=10240', --enforce-all]
     -   id: check-json
+    -   id: check-yaml
 
 default_stages: [commit, push]
