@@ -37,13 +37,9 @@
    - command: `ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"`
 
 <!-- ## 💪 Thanks to all Contributors
-This project exists thanks to all the people who contribute — [contribute](CONTRIBUTING.md).
-<div align="left">
-<a href="https://github.com/Yash-Raj-srivastav/devops-roadmap/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Yash-Raj-srivastav/devops-roadmap" />
-</a>
-</div> -->
-## Thanks to all the contributors
+This project exists thanks to all the people who contribute.
+## Thanks to all the contributors -->
+
 <a href = "https://github.com/Yash-Raj-srivastav/devops-roadmap/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=Yash-Raj-srivastav/devops-roadmap"/>
 </a>
