@@ -11,7 +11,7 @@ on:
 jobs:
   quality_checks:
     name: Perform quality check
-    runs-on: [self-hosted, label-1]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: check python version
@@ -21,4 +21,3 @@ jobs:
     - run: pre-commit install
     - name: run pre-commit checks on files
       run: pre-commit run --all-files --show-diff-on-failure
-      
