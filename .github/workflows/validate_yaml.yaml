@@ -2,7 +2,7 @@ name: Perform Quality check on the repo
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ develop ]
     path: [ '**.yaml', '**.yml' ]
   pull_request:
     type: [ opened, edited, reopened, synchronize ]
@@ -22,11 +22,3 @@ jobs:
     - name: run pre-commit checks on files
       run: pre-commit run --all-files --show-diff-on-failure
       
-  provision_cluster:
-    name: Provision K8s cluster via Ansible
-    runs-on: [self-hosted, label-1]
-    needs: quality_checks
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run ansible playbook to provision cluster
-      run: ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"

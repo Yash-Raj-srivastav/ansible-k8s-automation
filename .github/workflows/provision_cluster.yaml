@@ -1,0 +1,16 @@
+name: Perform Quality check on the repo
+
+on:
+  push:
+    branches: [ main ]
+    path: [ '**.yaml', '**.yml' ]
+
+jobs: 
+  provision_cluster:
+    name: Provision K8s cluster via Ansible
+    runs-on: [self-hosted, label-1]
+    needs: quality_checks
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run ansible playbook to provision cluster
+      run: ansible-playbook -e "namespace=sit2 type=deployment" ansible-practice/playbooks/deploy-kind-cluster.yaml --tags "create-deployment"
