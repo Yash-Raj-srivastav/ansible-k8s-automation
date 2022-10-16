@@ -26,9 +26,9 @@
 
     - name: create kind cluster with config file
       shell: "
-              cd;
-              kind create cluster --name my-cluster --config ansible-k8s-automation/kind-cluster/kind-cluster.yaml;
-              "
+        cd;
+        kind create cluster --name my-cluster --config ansible-k8s-automation/kind-cluster/kind-cluster.yaml;
+      "
       register: cluster_status
       when: cluster_exist_status.rc != 0
       tags: always
