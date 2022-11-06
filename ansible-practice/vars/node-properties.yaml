@@ -11,7 +11,6 @@ node_config:
     label: size
     labelValue: small
     nodes:
-      - my-cluster-worker
       - my-cluster-worker2
 
   - taint: spray
