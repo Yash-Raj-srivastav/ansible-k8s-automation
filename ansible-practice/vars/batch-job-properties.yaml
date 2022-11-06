@@ -2,21 +2,21 @@ job_server_names:
   - name: common_job_template
     label: large
     taint: blue
-    image: ubuntu
+    image: nginx
     file:
-    - "ubuntu-job"
-    - "ubuntu-job"
+    - "nginx-job"
+    - "nginx-job"
 
   - name: common_job_template
     label: small
     taint: green
-    image: ubuntu
+    image: nginx
     file:
-    - "ubuntu-job"
+    - "nginx-job"
 
   - name: common_job_template
     label: medium
     taint: blue
-    image: ubuntu
+    image: nginx
     file:
-    - "ubuntu-job"
+    - "nginx-job"
